@@ -1,59 +1,20 @@
-# Ignorar archivos binarios y de compilación
-bin/
-obj/
-out/
-
-# Ignorar archivos de configuración específicos de Visual Studio
-.vs/
-.vscode/
-.idea/
-# Archivos de configuración de ASP.NET
-appsettings.Development.json
-appsettings.Production.json
-
-# Archivos temporales de Visual Studio
+# User-specific files
 *.user
-*.userosscache
-*.suo
-*.sln.docstates
+*.vspscc
 
-# Ignorar paquetes NuGet
-packages/
-*.nupkg
-# Archivo de la base de datos de usuario
-project.lock.json
-project.fragment.lock.json
+# User-specific files (Windows)
+Thumbs.db
+ehthumbs.db
 
-# Archivos de publicación
-publish/
+# Build results
+[Bb]in/
+[Oo]bj/
 
-# Carpetas de dependencias específicas de Visual Studio
-.idea/
+# ASP.NET
+*.dbmdl
 .vs2019/
 .vs2017/
 
-# Archivos de logs
-*.log
-
-# Archivos generados por los comandos de dotnet
-*.dotnet/
-
-# Archivos de compilación de JetBrains Rider (si usas Rider)
-.idea/
-
-# Ignorar archivos de respaldo o temporales
-*~
-*.bak
-*.tmp
-
-# Ignorar archivos específicos de entornos locales
-.env
-
-# Ignorar archivos de build y test
-TestResults/
-TestArtifacts/
-
-# Ignorar archivos específicos de contenedores de Docker (si los usas)
-docker-compose.override.yml
-docker-compose.yml
-.dockerignore
+# .NET Core
+project.lock.json
+project.fragment.lock.json

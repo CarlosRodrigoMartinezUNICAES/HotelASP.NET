@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tKR3H/vzrs6vxGbJXCcnX02enJ6TCFCuk3ey3YxXlp4=",
+  "Hash": "mrg9bb1QYqY3P3ESE60Taz1WcXARJalRBYqPKdmKUbo=",
   "Source": "HotelASP.NET",
   "BasePath": "_content/HotelASP.NET",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "apfellwftw",
-      "Integrity": "/q9I8e4JdiJUtiehu1tXdGofo77SJG8zQL8hIBJQiwg=",
+      "Fingerprint": "5cj4mcho5v",
+      "Integrity": "5dAtZk+h7WA/1wpBP2sQKxrwa6+ZBTe2Ff+YyOaX3Eo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -57,6 +57,90 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\hero.webp",
+      "SourceId": "HotelASP.NET",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\",
+      "BasePath": "_content/HotelASP.NET",
+      "RelativePath": "images/hero#[.{fingerprint}]?.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1ve5jmkjwi",
+      "Integrity": "feX4lyKAiJZUkBFJNBoIFIGt8VKYjRoi36wEsC1+Tds=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hero.webp"
+    },
+    {
+      "Identity": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room1.jpg",
+      "SourceId": "HotelASP.NET",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\",
+      "BasePath": "_content/HotelASP.NET",
+      "RelativePath": "images/room1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5v8akmpbxh",
+      "Integrity": "YUcsdlu1XdY1DYsrbHpzlUfXk8NxhGdu3GA25N9xlGk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room2.jpg",
+      "SourceId": "HotelASP.NET",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\",
+      "BasePath": "_content/HotelASP.NET",
+      "RelativePath": "images/room2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hmhlzpl8se",
+      "Integrity": "eaP8Js+bBB5h9N+1WFCsqbpCOfk1xwujb/lZjg2KN5Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room3.jpg",
+      "SourceId": "HotelASP.NET",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\",
+      "BasePath": "_content/HotelASP.NET",
+      "RelativePath": "images/room3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1nj5kkn4dq",
+      "Integrity": "UznuDHHcA3bdoMJUVGXRJFVK0fIruA08B5JIvZuYBBM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room3.jpg"
     },
     {
       "Identity": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\js\\site.js",
@@ -1279,7 +1363,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.apfellwftw.css",
+      "Route": "css/site.5cj4mcho5v.css",
       "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1289,7 +1373,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4744"
+          "Value": "4859"
         },
         {
           "Name": "Content-Type",
@@ -1297,11 +1381,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/q9I8e4JdiJUtiehu1tXdGofo77SJG8zQL8hIBJQiwg=\""
+          "Value": "\"5dAtZk+h7WA/1wpBP2sQKxrwa6+ZBTe2Ff+YyOaX3Eo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 03:25:08 GMT"
+          "Value": "Sun, 09 Feb 2025 06:06:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1311,7 +1395,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "apfellwftw"
+          "Value": "5cj4mcho5v"
         },
         {
           "Name": "label",
@@ -1319,7 +1403,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/q9I8e4JdiJUtiehu1tXdGofo77SJG8zQL8hIBJQiwg="
+          "Value": "sha256-5dAtZk+h7WA/1wpBP2sQKxrwa6+ZBTe2Ff+YyOaX3Eo="
         }
       ]
     },
@@ -1334,7 +1418,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4744"
+          "Value": "4859"
         },
         {
           "Name": "Content-Type",
@@ -1342,11 +1426,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/q9I8e4JdiJUtiehu1tXdGofo77SJG8zQL8hIBJQiwg=\""
+          "Value": "\"5dAtZk+h7WA/1wpBP2sQKxrwa6+ZBTe2Ff+YyOaX3Eo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 03:25:08 GMT"
+          "Value": "Sun, 09 Feb 2025 06:06:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1356,7 +1440,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/q9I8e4JdiJUtiehu1tXdGofo77SJG8zQL8hIBJQiwg="
+          "Value": "sha256-5dAtZk+h7WA/1wpBP2sQKxrwa6+ZBTe2Ff+YyOaX3Eo="
         }
       ]
     },
@@ -1439,6 +1523,334 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/hero.1ve5jmkjwi.webp",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\hero.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "209650"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"feX4lyKAiJZUkBFJNBoIFIGt8VKYjRoi36wEsC1+Tds=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 06:04:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1ve5jmkjwi"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hero.webp"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-feX4lyKAiJZUkBFJNBoIFIGt8VKYjRoi36wEsC1+Tds="
+        }
+      ]
+    },
+    {
+      "Route": "images/hero.webp",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\hero.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "209650"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"feX4lyKAiJZUkBFJNBoIFIGt8VKYjRoi36wEsC1+Tds=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 06:04:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-feX4lyKAiJZUkBFJNBoIFIGt8VKYjRoi36wEsC1+Tds="
+        }
+      ]
+    },
+    {
+      "Route": "images/room1.5v8akmpbxh.jpg",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6231"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YUcsdlu1XdY1DYsrbHpzlUfXk8NxhGdu3GA25N9xlGk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 05:58:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5v8akmpbxh"
+        },
+        {
+          "Name": "label",
+          "Value": "images/room1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YUcsdlu1XdY1DYsrbHpzlUfXk8NxhGdu3GA25N9xlGk="
+        }
+      ]
+    },
+    {
+      "Route": "images/room1.jpg",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6231"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YUcsdlu1XdY1DYsrbHpzlUfXk8NxhGdu3GA25N9xlGk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 05:58:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YUcsdlu1XdY1DYsrbHpzlUfXk8NxhGdu3GA25N9xlGk="
+        }
+      ]
+    },
+    {
+      "Route": "images/room2.hmhlzpl8se.jpg",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7877"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eaP8Js+bBB5h9N+1WFCsqbpCOfk1xwujb/lZjg2KN5Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 05:58:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hmhlzpl8se"
+        },
+        {
+          "Name": "label",
+          "Value": "images/room2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-eaP8Js+bBB5h9N+1WFCsqbpCOfk1xwujb/lZjg2KN5Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/room2.jpg",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7877"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eaP8Js+bBB5h9N+1WFCsqbpCOfk1xwujb/lZjg2KN5Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 05:58:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eaP8Js+bBB5h9N+1WFCsqbpCOfk1xwujb/lZjg2KN5Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/room3.1nj5kkn4dq.jpg",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7748"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UznuDHHcA3bdoMJUVGXRJFVK0fIruA08B5JIvZuYBBM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 05:59:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1nj5kkn4dq"
+        },
+        {
+          "Name": "label",
+          "Value": "images/room3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UznuDHHcA3bdoMJUVGXRJFVK0fIruA08B5JIvZuYBBM="
+        }
+      ]
+    },
+    {
+      "Route": "images/room3.jpg",
+      "AssetFile": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7748"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UznuDHHcA3bdoMJUVGXRJFVK0fIruA08B5JIvZuYBBM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 05:59:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UznuDHHcA3bdoMJUVGXRJFVK0fIruA08B5JIvZuYBBM="
         }
       ]
     },

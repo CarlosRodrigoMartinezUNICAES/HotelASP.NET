@@ -18,3 +18,12 @@ ehthumbs.db
 # .NET Core
 project.lock.json
 project.fragment.lock.json
+
+# Ignorar el directorio .vs (Visual Studio)
+.vs/
+
+# Ignorar el directorio obj (archivos de compilación)
+obj/
+
+# Ignorar la carpeta obj/Debug/net8.0
+HotelASP.NET/obj/Debug/net8.0/

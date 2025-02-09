@@ -9,6 +9,22 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\hero.webp",
+      "PackagePath": "staticwebassets\\images\\hero.webp"
+    },
+    {
+      "Id": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room1.jpg",
+      "PackagePath": "staticwebassets\\images\\room1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room2.jpg",
+      "PackagePath": "staticwebassets\\images\\room2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\images\\room3.jpg",
+      "PackagePath": "staticwebassets\\images\\room3.jpg"
+    },
+    {
       "Id": "C:\\Users\\Carlos\\source\\repos\\HotelASP.NET\\HotelASP.NET\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

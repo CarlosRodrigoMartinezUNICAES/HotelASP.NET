@@ -1,7 +1,9 @@
+using System.IO;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.WebHost.UseKestrel();
 
 var app = builder.Build();
 

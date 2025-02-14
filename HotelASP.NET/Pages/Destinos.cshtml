@@ -1,0 +1,91 @@
+﻿@page
+@using EasyReverHotels.Pages
+@model DestinosModel
+@{
+    ViewData["Title"] = "Destinos Populares";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos Populares - EasyReverHotels</title>
+    <style>
+        /* Agregar estilos personalizados aquí si lo deseas */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Easy<span>Rever</span>Hotels</div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#habitaciones">Habitaciones</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#destinos">Destinos Populares</a></li>  <!-- Enlace a la nueva página -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="popular-destinations">
+        <h1>Destinos Más Populares</h1>
+        <p>Explora los destinos más exclusivos para tu próxima aventura. Descubre lo que cada lugar tiene para ofrecer:</p>
+
+        <div class="destinations-list">
+            <div class="destination-card">
+                <img src="images/cancun.jpg" alt="Cancún">
+                <h2>Cancún</h2>
+                <p>Disfruta de sus playas paradisíacas y su vibrante vida nocturna.</p>
+            </div>
+
+            <div class="destination-card">
+                <img src="images/destination2.jpg" alt="Barcelona">
+                <h2>Barcelona</h2>
+                <p>La capital de Cataluña, famosa por su arquitectura única y su cultura vibrante.</p>
+            </div>
+
+            <div class="destination-card">
+                <img src="images/destination3.jpg" alt="París">
+                <h2>París</h2>
+                <p>La ciudad del amor, con sus monumentos históricos y su exquisita gastronomía.</p>
+            </div>
+
+            <div class="destination-card">
+                <img src="images/destination4.jpg" alt="Tokio">
+                <h2>Tokio</h2>
+                <p>Sumérgete en la cultura japonesa con sus templos antiguos y tecnología avanzada.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sobre Nosotros</h4>
+                <p>EasyReverHotels, tu mejor opción para reservaciones hoteleras de calidad.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#">Reservaciones</a></li>
+                    <li><a href="#">Ofertas Especiales</a></li>
+                    <li><a href="#">Destinos Populares</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>Email: info@easyreverhotels.com</li>
+                    <li>Teléfono: +1 234 567 890</li>
+                    <li>Dirección: Calle Principal #123</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

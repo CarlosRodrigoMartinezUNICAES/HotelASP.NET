@@ -1,0 +1,156 @@
+﻿@page
+@using HotelASP.NET.Pages
+@model ContactosModel
+@{
+    ViewData["Title"] = "Contacto - EasyReverHotels";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - EasyReverHotels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .nav-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            .nav-container ul li {
+                display: inline;
+                margin: 0 15px;
+            }
+
+                .nav-container ul li a {
+                    color: white;
+                    text-decoration: none;
+                }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .contact-info, .contact-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+            .contact-info h2, .contact-form h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .contact-info ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .contact-info ul li {
+                    margin: 10px 0;
+                }
+
+            .contact-form input, .contact-form textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+            }
+
+            .contact-form button {
+                background-color: #003366;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .contact-form button:hover {
+                    background-color: #005bb5;
+                }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Easy<span>Rever</span>Hotels</div>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#habitaciones">Habitaciones</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#destinos">Destinos Populares</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-container">
+        <div class="contact-info">
+            <h2>Información de Contacto</h2>
+            <ul>
+                <li><strong>Email:</strong> info@easyreverhotels.com</li>
+                <li><strong>Teléfono:</strong> +1 234 567 890</li>
+                <li><strong>Dirección:</strong> Calle Principal #123, Ciudad, País</li>
+            </ul>
+        </div>
+
+        <div class="contact-form">
+            <h2>Envíanos tu mensaje</h2>
+            <form>
+                <input type="text" placeholder="Tu Nombre" required>
+                <input type="email" placeholder="Tu Email" required>
+                <textarea placeholder="Tu Mensaje" rows="5" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sobre Nosotros</h4>
+                <p>EasyReverHotels, tu mejor opción para reservaciones hoteleras de calidad.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#">Reservaciones</a></li>
+                    <li><a href="/Ofertas_Especiales">Ofertas Especiales</a></li>
+                    <li><a href="/Destinos">Destinos Populares</a></li>
+                    <li><a href="/Contactos#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>Email: info@easyreverhotels.com</li>
+                    <li>Teléfono: +1 234 567 890</li>
+                    <li>Dirección: Calle Principal #123</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

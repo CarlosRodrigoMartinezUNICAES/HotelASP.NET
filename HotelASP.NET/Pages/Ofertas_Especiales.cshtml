@@ -11,121 +11,738 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ofertas Especiales - EasyReverHotels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #ff5733;
+            --accent-color: #005bb5;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #fff;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            --transition-smooth: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
         header {
-            background-color: #003366;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #00254d 100%);
+            color: var(--light-text);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+            font-weight: 800;
         }
 
         .nav-container ul {
+            display: flex;
             list-style: none;
-            padding: 0;
         }
 
-            .nav-container ul li {
-                display: inline;
-                margin: 0 15px;
-            }
+        .nav-container ul li {
+            margin: 0 1rem;
+            position: relative;
+        }
 
-                .nav-container ul li a {
-                    color: white;
-                    text-decoration: none;
-                }
+        .nav-container ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-container ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            margin-top: 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 87, 51, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #e64a2e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 87, 51, 0.4);
+        }
+
+        /* Offers Section */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
 
         .offer-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            padding: 50px 20px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 30px;
         }
 
         .offer-card {
-            background-color: #ff5733;
-            color: white;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #e64a2e 100%);
+            color: var(--light-text);
+            border-radius: 15px;
+            width: calc(33.333% - 30px);
+            min-width: 280px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-smooth);
+            position: relative;
         }
 
-            .offer-card:hover {
-                transform: translateY(-10px);
-            }
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
 
-            .offer-card h3 {
-                margin-bottom: 15px;
-                font-size: 24px;
-            }
+        .offer-card-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-            .offer-card p {
-                font-size: 18px;
-            }
+        .offer-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
 
-            .offer-card span {
-                font-size: 28px;
-                font-weight: bold;
-            }
+        .offer-card:hover .offer-card-img img {
+            transform: scale(1.1);
+        }
 
-            .offer-card button {
-                background-color: #003366;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                margin-top: 20px;
-            }
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-                .offer-card button:hover {
-                    background-color: #005bb5;
-                }
+        .offer-card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .offer-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .offer-card p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .offer-card .price {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-card .original-price {
+            text-decoration: line-through;
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-right: 0.5rem;
+        }
+
+        .offer-card .features {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .offer-card .feature {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .offer-card .feature i {
+            margin-right: 0.3rem;
+        }
+
+        /* Featured Offer */
+        .featured-offer {
+            width: 100%;
+            display: flex;
+            background: linear-gradient(to right, var(--primary-color), #004080);
+            color: var(--light-text);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+        }
+
+        .featured-offer-img {
+            flex: 0 0 50%;
+            position: relative;
+        }
+
+        .featured-offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-offer-content {
+            flex: 0 0 50%;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-offer-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+
+        .featured-offer-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .featured-offer-content .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .featured-offer-content .btn {
+            align-self: flex-start;
+        }
+
+        /* Additional Sections */
+        .testimonials {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .testimonials h2 {
+            color: var(--light-text);
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 350px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background-image: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 2rem;
+            text-align: center;
+            color: var(--light-text);
+            margin: 4rem 0;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @@media (max-width: 992px) {
+            .offer-card {
+                width: calc(50% - 30px);
+            }
+            
+            .testimonial-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .featured-offer {
+                flex-direction: column;
+            }
+            
+            .featured-offer-img,
+            .featured-offer-content {
+                flex: 0 0 100%;
+            }
+            
+            .featured-offer-img {
+                height: 300px;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-container ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .offer-card {
+                width: 100%;
+            }
+            
+            .featured-offer-content {
+                padding: 2rem;
+            }
+            
+            .featured-offer-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .featured-offer-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Easy<span>Rever</span>Hotels</div>
-        <nav class="nav-container">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#habitaciones">Habitaciones</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#destinos">Destinos Populares</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <div class="logo">Easy<span>Rever</span>Hotels</div>
+            <nav class="nav-container">
+                <ul>
+                    <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#habitaciones"><i class="fas fa-bed"></i> Habitaciones</a></li>
+                    <li><a href="#servicios"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
+                    <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li><a href="#destinos"><i class="fas fa-map-marker-alt"></i> Destinos</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section class="offer-container" style="margin-top: 80px;">
-        <div class="offer-card">
-            <h3>Escapada a la Playa</h3>
-            <p>Disfruta de un fin de semana en la playa con un 40% de descuento</p>
-            <span>$199 / Noche</span>
-            <button>Reservar Ahora</button>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Ofertas Exclusivas para tu Próxima Aventura</h1>
+            <p>Descubre nuestras promociones limitadas y ahorra hasta un 40% en tus próximas vacaciones</p>
+            <a href="#ofertas" class="btn">Ver Ofertas <i class="fas fa-arrow-right"></i></a>
         </div>
-        <div class="offer-card">
-            <h3>Vacaciones de Lujo</h3>
-            <p>Paquete exclusivo de 7 noches con todo incluido</p>
-            <span>$1499 / Paquete</span>
-            <button>Reservar Ahora</button>
+    </section>
+
+    <h2 class="section-title" id="ofertas">Oferta Destacada</h2>
+    
+    <div class="offer-container">
+        <div class="featured-offer">
+            <div class="featured-offer-img">
+                <img src="/images/SUIT2.jpg" alt="Oferta Todo Incluido Premium">
+            </div>
+            <div class="featured-offer-content">
+                <h2>Paquete Todo Incluido Premium</h2>
+                <p>Disfruta de nuestro paquete exclusivo que incluye 7 noches en suite de lujo, gastronomía gourmet ilimitada, actividades acuáticas y acceso VIP a todas nuestras instalaciones.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-utensils"></i> Comidas incluidas</div>
+                    <div class="feature"><i class="fas fa-swimming-pool"></i> Piscina infinita</div>
+                    <div class="feature"><i class="fas fa-spa"></i> Spa completo</div>
+                </div>
+                <p class="price"><span class="original-price">$2499</span> $1799 / Paquete</p>
+                <button class="btn">Reservar Esta Oferta <i class="fas fa-check-circle"></i></button>
+            </div>
         </div>
+    </div>
+
+    <h2 class="section-title">Ofertas Especiales</h2>
+
+    <section class="offer-container">
         <div class="offer-card">
-            <h3>Escapada Romántica</h3>
-            <p>Escapada de fin de semana para dos personas</p>
-            <span>$299 / Noche</span>
-            <button>Reservar Ahora</button>
+            <div class="offer-card-img">
+                <img src="/images/playa escape.jpg" alt="Escapada a la Playa">
+                <span class="discount-badge">-40%</span>
+            </div>
+            <div class="offer-card-content">
+                <h3>Escapada a la Playa</h3>
+                <p>Disfruta de un fin de semana en la playa con un 40% de descuento. Incluye desayuno y acceso a la piscina.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-umbrella-beach"></i> Playa</div>
+                    <div class="feature"><i class="fas fa-coffee"></i> Desayuno</div>
+                </div>
+                <span class="price"><span class="original-price">$330</span> $199 / Noche</span>
+                <button class="btn">Reservar Ahora</button>
+            </div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-card-img">
+                <img src="/images/SUIT.jpg" alt="Vacaciones de Lujo">
+                <span class="discount-badge">-25%</span>
+            </div>
+            <div class="offer-card-content">
+                <h3>Vacaciones de Lujo</h3>
+                <p>Paquete exclusivo de 7 noches con todo incluido en nuestras suites premium con vistas panorámicas.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-glass-martini-alt"></i> Todo incluido</div>
+                    <div class="feature"><i class="fas fa-concierge-bell"></i> Servicio 24h</div>
+                </div>
+                <span class="price"><span class="original-price">$1999</span> $1499 / Paquete</span>
+                <button class="btn">Reservar Ahora</button>
+            </div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-card-img">
+                <img src="/images/AlianzanetDigital-ElTesoroHotel-PlanRomantico2.jpg" alt="Escapada Romántica">
+                <span class="discount-badge">-30%</span>
+            </div>
+            <div class="offer-card-content">
+                <h3>Escapada Romántica</h3>
+                <p>Escapada de fin de semana para dos personas. Incluye cena romántica y tratamiento de spa para parejas.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-heart"></i> Romántico</div>
+                    <div class="feature"><i class="fas fa-spa"></i> Spa pareja</div>
+                </div>
+                <span class="price"><span class="original-price">$429</span> $299 / Noche</span>
+                <button class="btn">Reservar Ahora</button>
+            </div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-card-img">
+                <img src="/images/Original hotel in the mountains.jpg" alt="Aventura en la Montaña">
+                <span class="discount-badge">-35%</span>
+            </div>
+            <div class="offer-card-content">
+                <h3>Aventura en la Montaña</h3>
+                <p>Paquete para aventureros que incluye 5 noches de alojamiento y actividades al aire libre guiadas.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-hiking"></i> Senderismo</div>
+                    <div class="feature"><i class="fas fa-mountain"></i> Vistas</div>
+                </div>
+                <span class="price"><span class="original-price">$899</span> $599 / Paquete</span>
+                <button class="btn">Reservar Ahora</button>
+            </div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-card-img">
+                <img src="/images/Lockscreen.jpg" alt="Escapada Urbana">
+                <span class="discount-badge">-20%</span>
+            </div>
+            <div class="offer-card-content">
+                <h3>Escapada Urbana</h3>
+                <p>Descubre la ciudad con nuestro paquete urbano que incluye 3 noches y tour guiado por los principales monumentos.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-city"></i> Centro</div>
+                    <div class="feature"><i class="fas fa-map"></i> Tours</div>
+                </div>
+                <span class="price"><span class="original-price">$599</span> $479 / Paquete</span>
+                <button class="btn">Reservar Ahora</button>
+            </div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-card-img">
+                <img src="/images/Puffino MX.jpg" alt="Retiro Wellness">
+                <span class="discount-badge">-15%</span>
+            </div>
+            <div class="offer-card-content">
+                <h3>Retiro Wellness</h3>
+                <p>Cuida tu cuerpo y mente con nuestro paquete wellness que incluye yoga, meditación y tratamientos holísticos.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-hot-tub"></i> Spa completo</div>
+                    <div class="feature"><i class="fas fa-leaf"></i> Orgánico</div>
+                </div>
+                <span class="price"><span class="original-price">$899</span> $769 / Paquete</span>
+                <button class="btn">Reservar Ahora</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <p>"Mi familia y yo disfrutamos muchísimo de la escapada a la playa. El servicio fue impecable y las instalaciones superaron nuestras expectativas. ¡Volveremos pronto!"</p>
+                <div class="testimonial-author">María López, Madrid</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"La oferta romántica fue perfecta para celebrar nuestro aniversario. La cena a la luz de las velas con vista al mar fue mágica. Totalmente recomendable."</p>
+                <div class="testimonial-author">Carlos Rodríguez, Barcelona</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Las vacaciones de lujo superaron todas nuestras expectativas. El personal atento, la comida exquisita y las actividades organizadas hicieron que nuestro viaje fuera inolvidable."</p>
+                <div class="testimonial-author">Ana Martínez, Valencia</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>¿Listo para vivir una experiencia inolvidable?</h2>
+            <p>Reserva ahora y obtén un 10% adicional utilizando el código <strong>VERANO2025</strong></p>
+            <a href="#reservar" class="btn">Reservar Mi Experiencia</a>
         </div>
     </section>
 
@@ -133,26 +750,54 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Sobre Nosotros</h4>
-                <p>EasyReverHotels, tu mejor opción para reservaciones hoteleras de calidad.</p>
+                <p>EasyReverHotels, tu mejor opción para reservaciones hoteleras de calidad. Ofrecemos experiencias únicas y personalizadas en los mejores destinos.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
+            
             <div class="footer-section">
                 <h4>Enlaces Rápidos</h4>
                 <ul>
                     <li><a href="#">Reservaciones</a></li>
                     <li><a href="/Ofertas_Especiales">Ofertas Especiales</a></li>
                     <li><a href="/Destinos">Destinos Populares</a></li>
-                    <li><a href="/Contactos#">Contacto</a></li>
+                    <li><a href="/Politicas_Cancelacion">Políticas de Cancelación</a></li>
+                    <li><a href="/Preguntas_Frecuentes">Preguntas Frecuentes</a></li>
+                    <li><a href="/Blog">Blog de Viajes</a></li>
                 </ul>
             </div>
+            
+            <div class="footer-section">
+                <h4>Destinos Populares</h4>
+                <ul>
+                    <li><a href="#">Cancún, México</a></li>
+                    <li><a href="#">Barcelona, España</a></li>
+                    <li><a href="#">Punta Cana, República Dominicana</a></li>
+                    <li><a href="#">París, Francia</a></li>
+                    <li><a href="#">Bali, Indonesia</a></li>
+                </ul>
+            </div>
+            
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <ul>
-                    <li>Email: info@easyreverhotels.com</li>
-                    <li>Teléfono: +1 234 567 890</li>
-                    <li>Dirección: Calle Principal #123</li>
+                    <li><i class="fas fa-envelope"></i> info@easyreverhotels.com</li>
+                    <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle Principal #123, Madrid</li>
+                    <li><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 20:00</li>
                 </ul>
             </div>
         </div>
+        
+        <div class="copyright">
+            &copy; 2025 EasyReverHotels. Todos los derechos reservados.
+        </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>

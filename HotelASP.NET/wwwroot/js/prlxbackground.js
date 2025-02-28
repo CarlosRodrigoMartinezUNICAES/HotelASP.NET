@@ -7,6 +7,5 @@
 
     const parallaxBackground = document.querySelector(".parallax-background");
 
-    // Apply the transformation to the parallax background
     parallaxBackground.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.2)`;
 });

@@ -28,6 +28,5 @@ document.addEventListener("DOMContentLoaded", function () {
     nextButton.addEventListener("click", nextImage);
     prevButton.addEventListener("click", prevImage);
 
-    // Cambio automático de imagen cada 4 segundos
     setInterval(nextImage, 4000);
 });

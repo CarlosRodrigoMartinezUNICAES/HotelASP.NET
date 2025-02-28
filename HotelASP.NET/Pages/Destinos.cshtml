@@ -11,8 +11,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destinos Populares - EasyReverHotels</title>
+    <script src="~/js/parallax.js"></script>
+    <script src="~/js/prlxbackground.js"></script> <!-- Linking external JS -->
+    <style>
+        body {
+            background-color: #ecf0f1;
+            font-size: 1rem;
+            line-height: 1.5;
+            position: relative; /* Ensure the background moves with the mouse */
+        }
+
+        .parallax-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('/images/city.jpg') center/cover no-repeat;
+            z-index: -1; /* Keep it behind other content */
+        }
+
+        /* Additional Styles */
+        .destinations-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: #fff;
+            margin-top: 120px;
+        }
+
+        .destinations-list {
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
+    <div class="parallax-background"></div> <!-- Parallax background container -->
     <header>
         <div class="nav-container">
             <div class="logo">Easy<span>Rever</span>Hotels</div>
@@ -22,14 +56,15 @@
                     <li><a href="#habitaciones">Habitaciones</a></li>
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="#destinos">Destinos Populares</a></li>  <!-- Enlace a la nueva página -->
+                    <li><a href="#destinos">Destinos Populares</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="destinations-list" style="margin-top: 80px;">
-        <!-- Añadido margen superior -->
+    <h1 class="destinations-title">Estos son algunos de tus próximos destinos</h1>
+
+    <section class="destinations-list">
         <div class="destination-card">
             <img src="images/tokyo.webp" alt="Tokyo" />
             <h2>Tokyo</h2>
@@ -43,7 +78,7 @@
         <div class="destination-card">
             <img src="images/barcelona.webp" alt="Barcelona" />
             <h2>Barcelona</h2>
-            <p>Un destino turístico que ofrece una mezcla única de historia, arte, cultura y gastronomía. </p>
+            <p>Un destino turístico que ofrece una mezcla única de historia, arte, cultura y gastronomía.</p>
         </div>
     </section>
 

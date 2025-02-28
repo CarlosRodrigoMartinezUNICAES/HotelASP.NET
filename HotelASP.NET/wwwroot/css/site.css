@@ -71,6 +71,23 @@ nav a {
     overflow: hidden;
 }
 
+.hero-content {
+    position: absolute; /* Coloca el texto encima del carrusel */
+    z-index: 2; /* Asegura que el texto esté encima del carrusel */
+    text-align: center;
+    color: white;
+}
+
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1.25rem;
+    }
+
+
 /* Carrusel ocupa toda la pantalla */
 .carousel {
     position: absolute;

@@ -1,0 +1,105 @@
+﻿@page
+@model HotelASP.NET.Pages.Admin.DashboardModel
+@{
+	ViewData["Title"] = "Dashboard Administrador";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Administrador - EasyReverHotels</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+        }
+
+        .dashboard-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .dashboard-header h1 {
+                margin: 0;
+                font-size: 1.8rem;
+            }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .stat-card h2 {
+                margin: 0;
+                font-size: 2.2rem;
+                color: #2c3e50;
+            }
+
+            .stat-card p {
+                margin-top: 0.5rem;
+                font-size: 1.1rem;
+                color: #7f8c8d;
+            }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>Panel de Administrador</h1>
+        <form method="post" asp-page-handler="Logout">
+            <button type="submit" class="logout-btn">Cerrar sesión</button>
+        </form>
+    </header>
+
+    <div class="dashboard-content">
+        <h2>Bienvenido, @Model.Username</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2>24</h2>
+                <p>Habitaciones Ocupadas</p>
+            </div>
+            <div class="stat-card">
+                <h2>12</h2>
+                <p>Habitaciones Disponibles</p>
+            </div>
+            <div class="stat-card">
+                <h2>56</h2>
+                <p>Clientes Registrados</p>
+            </div>
+            <div class="stat-card">
+                <h2>4</h2>
+                <p>Reservas Pendientes</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

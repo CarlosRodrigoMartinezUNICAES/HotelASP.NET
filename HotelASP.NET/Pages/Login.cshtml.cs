@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.SqlClient;
 
 namespace HotelASP.NET.Pages
 {
@@ -73,6 +74,9 @@ namespace HotelASP.NET.Pages
                                 string username = reader.GetString(1);
                                 string role = reader.GetString(2);
 
+                                Console.WriteLine($"Login exitoso: {username} ({role})"); // Log útil si ejecutas desde Visual Studio
+                                TempData["SuccessMessage"] = $"Login exitoso para {username} con rol {role}";
+
                                 // Guardar información del usuario en la sesión
                                 HttpContext.Session.SetInt32("UserId", userId);
                                 HttpContext.Session.SetString("Username", username);
@@ -82,6 +86,10 @@ namespace HotelASP.NET.Pages
                                 if (role == "admin")
                                 {
                                     return RedirectToPage("/Admin/Dashboard");
+                                }
+                                if (role == "cliente")
+                                {
+                                    return RedirectToPage("/Cliente/Index");
                                 }
                                 else
                                 {
@@ -105,3 +113,4 @@ namespace HotelASP.NET.Pages
             }
         }
     }
+}

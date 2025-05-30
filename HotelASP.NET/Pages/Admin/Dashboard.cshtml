@@ -1,105 +1,630 @@
-﻿@page
-@model HotelASP.NET.Pages.Admin.DashboardModel
-@{
-	ViewData["Title"] = "Dashboard Administrador";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Administrador - EasyReverHotels</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f8;
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-item {
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+        }
+
+            .menu-item:hover, .menu-item.active {
+                background-color: rgba(255,255,255,0.1);
+                color: white;
+                border-left-color: #e74c3c;
+            }
+
+            .menu-item i {
+                margin-right: 1rem;
+                font-size: 1.2rem;
+                width: 24px;
+                text-align: center;
+            }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding-top: 60px;
         }
 
         .dashboard-header {
-            background-color: #2c3e50;
-            color: white;
+            background-color: white;
             padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 250px;
+            z-index: 900;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e74c3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .content-section {
+            padding: 2rem;
+        }
+
+        .section-title {
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-            .dashboard-header h1 {
-                margin: 0;
-                font-size: 1.8rem;
-            }
-
-        .logout-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 0.6rem 1rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .dashboard-content {
-            padding: 2rem;
-        }
-
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
-            background-color: white;
+            background: white;
             border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s;
         }
 
-            .stat-card h2 {
-                margin: 0;
-                font-size: 2.2rem;
+            .stat-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .stat-card .icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: white;
+            }
+
+            .stat-card .icon-rooms {
+                background-color: #3498db;
+            }
+
+            .stat-card .icon-bookings {
+                background-color: #9b59b6;
+            }
+
+            .stat-card .icon-clients {
+                background-color: #2ecc71;
+            }
+
+            .stat-card .icon-revenue {
+                background-color: #e74c3c;
+            }
+
+            .stat-card .content h3 {
+                font-size: 1.8rem;
+                margin-bottom: 0.2rem;
                 color: #2c3e50;
             }
 
-            .stat-card p {
-                margin-top: 0.5rem;
-                font-size: 1.1rem;
+            .stat-card .content p {
                 color: #7f8c8d;
+                font-size: 0.9rem;
             }
+
+        .data-table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #fef9e7;
+            color: #f39c12;
+        }
+
+        .status-confirmed {
+            background-color: #e8f6f3;
+            color: #16a085;
+        }
+
+        .status-canceled {
+            background-color: #fdedec;
+            color: #e74c3c;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-view {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-add {
+            background-color: #2ecc71;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            font-weight: 500;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(120deg, #f8f9fa, #ecf0f1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .toggle-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            color: #2c3e50;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+
+                .sidebar .menu-text {
+                    display: none;
+                }
+
+                .sidebar .sidebar-header h2 {
+                    display: none;
+                }
+
+                .sidebar .sidebar-header {
+                    padding: 1rem;
+                    text-align: center;
+                }
+
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .dashboard-header {
+                left: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+                .sidebar.active {
+                    transform: translateX(0);
+                }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .dashboard-header {
+                left: 0;
+            }
+
+            .toggle-sidebar {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
-    <header class="dashboard-header">
-        <h1>Panel de Administrador</h1>
-        <form method="post" asp-page-handler="Logout">
-            <button type="submit" class="logout-btn">Cerrar sesión</button>
-        </form>
-    </header>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>EasyReverHotels</h2>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active">
+                    <i>📊</i>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i>🛏️</i>
+                    <span class="menu-text">Habitaciones</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i>📅</i>
+                    <span class="menu-text">Reservas</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i>👥</i>
+                    <span class="menu-text">Clientes</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i>💵</i>
+                    <span class="menu-text">Pagos</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i>⚙️</i>
+                    <span class="menu-text">Configuración</span>
+                </a>
+                <div style="padding: 1.5rem;">
+                    <form method="post" asp-page-handler="Logout">
+                        <button type="submit" class="search-btn" style="width: 100%; background-color: #e74c3c;">
+                            Cerrar sesión
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-    <div class="dashboard-content">
-        <h2>Bienvenido, @Model.Username</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h2>24</h2>
-                <p>Habitaciones Ocupadas</p>
-            </div>
-            <div class="stat-card">
-                <h2>12</h2>
-                <p>Habitaciones Disponibles</p>
-            </div>
-            <div class="stat-card">
-                <h2>56</h2>
-                <p>Clientes Registrados</p>
-            </div>
-            <div class="stat-card">
-                <h2>4</h2>
-                <p>Reservas Pendientes</p>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <button class="toggle-sidebar" id="toggleSidebar">☰</button>
+                <div class="user-info">
+                    <div class="user-avatar">@Model.Username.Substring(0,1)</div>
+                    <div>
+                        <div style="font-weight: 500;">@Model.Username</div>
+                        <div style="font-size: 0.9rem; color: #7f8c8d;">Administrador</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-section">
+                <!-- Welcome Section -->
+                <div class="section-title">
+                    <h2>Bienvenido, @Model.Username</h2>
+                    <div>Hoy es @DateTime.Now.ToString("dd MMMM yyyy")</div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon icon-rooms">🛏️</div>
+                        <div class="content">
+                            <h3>36</h3>
+                            <p>Habitaciones</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon icon-bookings">📅</div>
+                        <div class="content">
+                            <h3>24</h3>
+                            <p>Reservas Activas</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon icon-clients">👥</div>
+                        <div class="content">
+                            <h3>56</h3>
+                            <p>Clientes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon icon-revenue">💰</div>
+                        <div class="content">
+                            <h3>€12,450</h3>
+                            <p>Ingresos Mensuales</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="section-title">
+                    <h2>Estadísticas</h2>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        Gráfico de ocupación y reservas mensuales
+                    </div>
+                </div>
+
+                <!-- Recent Bookings -->
+                <div class="section-title">
+                    <h2>Reservas Recientes</h2>
+                    <button class="btn-add">➕ Nueva Reserva</button>
+                </div>
+                <div class="data-table">
+                    <div class="table-header">
+                        <div>Últimas 5 reservas</div>
+                        <div><input type="text" placeholder="Buscar reservas..." style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;"></div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Habitación</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#RES-1025</td>
+                                    <td>María López</td>
+                                    <td>Suite Presidencial</td>
+                                    <td>15 Oct - 18 Oct</td>
+                                    <td><span class="status status-confirmed">Confirmada</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RES-1024</td>
+                                    <td>Carlos García</td>
+                                    <td>Habitación Doble</td>
+                                    <td>14 Oct - 16 Oct</td>
+                                    <td><span class="status status-confirmed">Confirmada</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RES-1023</td>
+                                    <td>Ana Martínez</td>
+                                    <td>Habitación Individual</td>
+                                    <td>12 Oct - 15 Oct</td>
+                                    <td><span class="status status-pending">Pendiente</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RES-1022</td>
+                                    <td>Juan Pérez</td>
+                                    <td>Suite Ejecutiva</td>
+                                    <td>10 Oct - 12 Oct</td>
+                                    <td><span class="status status-canceled">Cancelada</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-delete">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RES-1021</td>
+                                    <td>Laura Fernández</td>
+                                    <td>Habitación Familiar</td>
+                                    <td>08 Oct - 11 Oct</td>
+                                    <td><span class="status status-confirmed">Confirmada</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Room Management -->
+                <div class="section-title">
+                    <h2>Administración de Habitaciones</h2>
+                    <button class="btn-add">➕ Nueva Habitación</button>
+                </div>
+                <div class="data-table">
+                    <div class="table-header">
+                        <div>Todas las habitaciones</div>
+                        <div>
+                            <select style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
+                                <option>Todas las categorías</option>
+                                <option>Individual</option>
+                                <option>Doble</option>
+                                <option>Suite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Habitación</th>
+                                    <th>Tipo</th>
+                                    <th>Precio/Noche</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Suite Presidencial #301</td>
+                                    <td>Suite</td>
+                                    <td>€250</td>
+                                    <td><span class="status status-confirmed">Disponible</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Habitación Doble #205</td>
+                                    <td>Doble</td>
+                                    <td>€120</td>
+                                    <td><span class="status status-confirmed">Disponible</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Habitación Individual #108</td>
+                                    <td>Individual</td>
+                                    <td>€85</td>
+                                    <td><span class="status status-pending">En limpieza</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Suite Ejecutiva #302</td>
+                                    <td>Suite</td>
+                                    <td>€180</td>
+                                    <td><span class="status status-confirmed">Disponible</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Habitación Familiar #201</td>
+                                    <td>Familiar</td>
+                                    <td>€150</td>
+                                    <td><span class="status status-canceled">En mantenimiento</span></td>
+                                    <td>
+                                        <button class="action-btn btn-view">Ver</button>
+                                        <button class="action-btn btn-edit">Editar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

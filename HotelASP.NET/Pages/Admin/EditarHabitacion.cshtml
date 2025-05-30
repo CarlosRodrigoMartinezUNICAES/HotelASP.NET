@@ -1,0 +1,167 @@
+﻿@page
+@model HotelASP.NET.Pages.Admin.EditarHabitacionModel
+@{
+    ViewData["Title"] = "Editar Habitación";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Habitación - EasyReverHotels</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-save {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-save:hover {
+            background-color: #218838;
+        }
+
+        .btn-cancel:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Panel <span>Admin</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/Admin/Dashboard">Dashboard</a></li>
+                    <li><a href="/Admin/AnadirHabitacion">Añadir Habitación</a></li>
+                    <li><a href="/Admin/VerHabitacion">Ver Habitaciones</a></li>
+                    <li>
+                        <form method="post" asp-page-handler="Logout">
+                            <button type="submit" class="search-btn">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="featured-rooms" style="margin-top: 100px;">
+        <div class="section-title">
+            <h2>Editar Habitación</h2>
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">@Model.Message</div>
+            }
+        </div>
+
+        <div class="form-container">
+            <form method="post">
+                <input type="hidden" asp-for="Habitacion.IdHabitacion" />
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.NumeroHabitacion">Número de Habitación:</label>
+                    <input asp-for="Habitacion.NumeroHabitacion" type="text" required>
+                    <span asp-validation-for="Habitacion.NumeroHabitacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.IdTipoHabitacion">Tipo de Habitación:</label>
+                    <select asp-for="Habitacion.IdTipoHabitacion" asp-items="Model.TiposHabitacion" required>
+                        <option value="">Seleccione un tipo</option>
+                    </select>
+                    <span asp-validation-for="Habitacion.IdTipoHabitacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.Piso">Piso:</label>
+                    <input asp-for="Habitacion.Piso" type="number" min="1" max="20" required>
+                    <span asp-validation-for="Habitacion.Piso" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.Estado">Estado:</label>
+                    <select asp-for="Habitacion.Estado" required>
+                        <option value="disponible">Disponible</option>
+                        <option value="ocupada">Ocupada</option>
+                        <option value="reservada">Reservada</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="limpieza">Limpieza</option>
+                    </select>
+                    <span asp-validation-for="Habitacion.Estado" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.Detalles">Descripción:</label>
+                    <textarea asp-for="Habitacion.Detalles" rows="4" required></textarea>
+                    <span asp-validation-for="Habitacion.Detalles" class="text-danger"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-save">Guardar Cambios</button>
+                    <a href="/Admin/VerHabitacion" class="btn-cancel">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

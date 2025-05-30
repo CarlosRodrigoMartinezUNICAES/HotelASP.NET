@@ -1,0 +1,237 @@
+﻿@page
+@model HotelASP.NET.Pages.Admin.VerHabitacionModel
+@{
+    ViewData["Title"] = "Ver Habitaciones";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Habitaciones - EasyReverHotels</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .edit {
+            background-color: #4CAF50;
+        }
+
+            .edit:hover {
+                background-color: #45a049;
+            }
+
+        .delete {
+            background-color: #f44336;
+        }
+
+            .delete:hover {
+                background-color: #d32f2f;
+            }
+
+        .status-available {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .status-occupied {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .status-maintenance {
+            color: #FFC107;
+            font-weight: bold;
+        }
+
+        .rooms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .rooms-table th {
+                background-color: #2c3e50;
+                color: white;
+                padding: 12px 15px;
+                text-align: left;
+            }
+
+            .rooms-table td {
+                padding: 10px 15px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .rooms-table tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+
+            .rooms-table tr:hover {
+                background-color: #e9ecef;
+            }
+
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 300px;
+        }
+
+        .search-btn {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .search-btn:hover {
+                background-color: #2980b9;
+            }
+
+        .no-rooms {
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Panel <span>Admin</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/Admin/Dashboard">Dashboard</a></li>
+                    <li><a href="/Admin/AnadirHabitacion">Añadir Habitación</a></li>
+                    <li><a href="/Admin/VerHabitacion" class="active">Ver Habitaciones</a></li>
+                    <li>
+                        <form method="post" asp-page-handler="Logout">
+                            <button type="submit" class="search-btn">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="featured-rooms" style="margin-top: 100px;">
+        <div class="section-title">
+            <h2>Listado de Habitaciones</h2>
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">@Model.Message</div>
+            }
+            <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                <a href="/Admin/Dashboard" class="book-btn">Volver al Dashboard</a>
+                <a href="/Admin/AnadirHabitacion" class="search-btn">Añadir Nueva</a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por número o tipo..." />
+                <button id="searchBtn" class="search-btn">Buscar</button>
+            </div>
+        </div>
+
+        <div class="rooms-container">
+            @if (Model.Habitaciones == null || !Model.Habitaciones.Any())
+            {
+                <div class="no-rooms">
+                    <p>No se encontraron habitaciones registradas.</p>
+                    <a href="/Admin/AnadirHabitacion" class="book-btn">Añadir Primera Habitación</a>
+                </div>
+            }
+            else
+            {
+                <table class="rooms-table">
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Piso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var habitacion in Model.Habitaciones)
+                        {
+                            <tr>
+                                <td>@habitacion.NumeroHabitacion</td>
+                                <td>@habitacion.TipoHabitacion</td>
+                                <td>
+                                    <span class="@GetStatusClass(habitacion.Estado)">
+                                        @habitacion.Estado
+                                    </span>
+                                </td>
+                                <td>@habitacion.Piso</td>
+                                <td class="action-buttons">
+                                    <a href="/Admin/EditarHabitacion?id=@habitacion.IdHabitacion" class="action-btn edit">Editar</a>
+                                    <form method="post" asp-page-handler="Eliminar" asp-route-id="@habitacion.IdHabitacion" onsubmit="return confirm('¿Estás seguro de eliminar esta habitación?');">
+                                        <button type="submit" class="action-btn delete">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.rooms-table tbody tr');
+
+            rows.forEach(row => {
+                const roomNumber = row.cells[0].textContent.toLowerCase();
+                const roomType = row.cells[1].textContent.toLowerCase();
+
+                if (roomNumber.includes(searchTerm) || roomType.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                document.getElementById('searchBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>
+
+@functions {
+    public string GetStatusClass(string estado)
+    {
+        return estado.ToLower() switch
+        {
+            "disponible" => "status-available",
+            "ocupada" => "status-occupied",
+            "mantenimiento" => "status-maintenance",
+            _ => ""
+        };
+    }
+}

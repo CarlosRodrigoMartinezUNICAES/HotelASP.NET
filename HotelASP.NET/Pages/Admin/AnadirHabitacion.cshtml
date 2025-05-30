@@ -1,0 +1,77 @@
+﻿@page
+@model HotelASP.NET.Pages.Admin.AnadirHabitacionModel
+@{
+    ViewData["Title"] = "Añadir Habitación";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Habitación - EasyReverHotels</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">Panel <span>Admin</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/Admin/Dashboard">Dashboard</a></li>
+                    <li><a href="/Admin/AnadirHabitacion">Añadir Habitación</a></li>
+                    <li><a href="/Admin/VerHabitacion">Ver Habitaciones</a></li>
+                    <li>
+                        <form method="post" asp-page-handler="Logout">
+                            <button type="submit" class="search-btn">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="featured-rooms" style="margin-top: 100px;">
+        <div class="section-title">
+            <h2>Añadir Nueva Habitación</h2>
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">@Model.Message</div>
+            }
+            <div style="margin-top: 1rem;">
+                <a href="/Admin/Dashboard" class="book-btn">Volver al Dashboard</a>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form method="post" class="room-form">
+                <div class="form-group">
+                    <label asp-for="Habitacion.NumeroHabitacion">Número de Habitación:</label>
+                    <input asp-for="Habitacion.NumeroHabitacion" type="text" required>
+                    <span asp-validation-for="Habitacion.NumeroHabitacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.IdTipoHabitacion">Tipo de Habitación:</label>
+                    <select asp-for="Habitacion.IdTipoHabitacion" asp-items="Model.TiposHabitacion" required>
+                        <option value="">Seleccione un tipo</option>
+                    </select>
+                    <span asp-validation-for="Habitacion.IdTipoHabitacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.Piso">Piso:</label>
+                    <input asp-for="Habitacion.Piso" type="number" min="1" max="20" required>
+                    <span asp-validation-for="Habitacion.Piso" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Habitacion.Detalles">Descripción:</label>
+                    <textarea asp-for="Habitacion.Detalles" rows="4" required></textarea>
+                    <span asp-validation-for="Habitacion.Detalles" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="book-btn">Guardar Habitación</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -8,7 +8,6 @@ namespace HotelASP.NET.Pages
     public class LoginModel : PageModel
     {
         private readonly IConfiguration _configuration;
-
         public LoginModel(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -16,17 +15,15 @@ namespace HotelASP.NET.Pages
 
         [BindProperty]
         public InputModel Input { get; set; }
-
         public string ErrorMessage { get; set; }
         public string SuccessMessage { get; set; }
-
         public class InputModel
         {
             [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
-            public string Username { get; set; }
+            public string? Username { get; set; }
 
             [Required(ErrorMessage = "La contraseña es obligatoria")]
-            public string Password { get; set; }
+            public string? Password { get; set; }
         }
 
         public void OnGet()

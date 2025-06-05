@@ -19,10 +19,10 @@
             <div class="logo">Easy<span>Rever</span>Hotels</div>
             <nav>
                 <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#habitaciones">Habitaciones</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#">Reservaciones</a></li>
+                    <li><a href="/Ofertas_Especiales">Ofertas Especiales</a></li>
+                    <li><a href="/Destinos">Destinos Populares</a></li>
+                    <li><a href="/Contactos#">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -44,35 +44,28 @@
         </div>
     </section>
 
-
-    <section class="featured-rooms">
-        
+    <section class="featured-rooms" id="habitaciones">
+        <h2>Habitaciones Disponibles</h2>
+        <div class="room-grid">
+            @foreach (var habitacion in Model.HabitacionesDisponibles)
+            {
+                <div class="room-card">
+                    <img src="/images/habitacion_default.jpg" alt="Habitación @habitacion.Numero">
+                    <div class="room-info">
+                        <h3>@habitacion.Tipo</h3>
+                        <p><strong>Número:</strong> @habitacion.Numero</p>
+                        <p><strong>Piso:</strong> @habitacion.Piso</p>
+                        <p><strong>Capacidad:</strong> @habitacion.Capacidad persona(s)</p>
+                        <p><strong>Precio por noche:</strong> $@habitacion.Precio</p>
+                        @if (!string.IsNullOrWhiteSpace(habitacion.Detalles))
+                        {
+                            <p class="detalles">@habitacion.Detalles</p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Sobre Nosotros</h4>
-                <p>EasyReverHotels, tu mejor opción para reservaciones hoteleras de calidad.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="#">Reservaciones</a></li>
-                    <li><a href="/Ofertas_Especiales">Ofertas Especiales</a></li>
-                    <li><a href="/Destinos">Destinos Populares</a></li>
-                    <li><a href="/Contactos#">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contacto</h4>
-                <ul>
-                    <li>Email: info@easyreverhotels.com</li>
-                    <li>Teléfono: +1 234 567 890</li>
-                    <li>Dirección: Calle Principal #123</li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

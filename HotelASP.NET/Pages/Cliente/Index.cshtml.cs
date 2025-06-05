@@ -37,7 +37,7 @@ public class IndexModel : PageModel
         var habitaciones = new List<HabitacionViewModel>();
 
         // CORRECCIÓN: quitar los asteriscos y usar guión bajo
-        var connectionString = _config.GetConnectionString("LoginHotelConnection");
+        var connectionString = _config.GetConnectionString("Login_HotelConnection");
 
         using (var conn = new SqlConnection(connectionString))
         {

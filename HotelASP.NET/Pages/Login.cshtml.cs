@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HotelASP.NET.Pages
 {
@@ -17,6 +19,7 @@ namespace HotelASP.NET.Pages
         public InputModel Input { get; set; }
         public string ErrorMessage { get; set; }
         public string SuccessMessage { get; set; }
+
         public class InputModel
         {
             [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
@@ -28,7 +31,6 @@ namespace HotelASP.NET.Pages
 
         public void OnGet()
         {
-            // Si hay un mensaje en TempData, lo mostramos y luego lo limpiamos
             if (TempData["SuccessMessage"] != null)
             {
                 SuccessMessage = TempData["SuccessMessage"].ToString();
@@ -49,58 +51,83 @@ namespace HotelASP.NET.Pages
                 return Page();
             }
 
-            // Verificar credenciales en la base de datos
             try
             {
-                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Login_HotelConnection")))
+                using (SqlConnection connection = new SqlConnection(
+                    _configuration.GetConnectionString("Login_HotelConnection")))
                 {
                     connection.Open();
-                    string sql = "SELECT IdUsuario, NombreUsuario, RolUsuario FROM Usuarios WHERE NombreUsuario = @Username AND Contraseña = @Password";
 
-                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    // 1. Primero obtenemos el salt y hash almacenado
+                    string getSaltSql = "SELECT Salt, Contraseña FROM Usuarios WHERE NombreUsuario = @Username";
+
+                    string salt = "";
+                    string storedHash = "";
+
+                    using (SqlCommand saltCommand = new SqlCommand(getSaltSql, connection))
                     {
-                        command.Parameters.AddWithValue("@Username", Input.Username);
-                        command.Parameters.AddWithValue("@Password", Input.Password);
+                        saltCommand.Parameters.AddWithValue("@Username", Input.Username);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataReader reader = saltCommand.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                // Usuario autenticado correctamente
-                                int userId = reader.GetInt32(0);
-                                string username = reader.GetString(1);
-                                string role = reader.GetString(2);
-
-                                Console.WriteLine($"Login exitoso: {username} ({role})"); // Log útil si ejecutas desde Visual Studio
-                                TempData["SuccessMessage"] = $"Login exitoso para {username} con rol {role}";
-
-                                // Guardar información del usuario en la sesión
-                                HttpContext.Session.SetInt32("UserId", userId);
-                                HttpContext.Session.SetString("Username", username);
-                                HttpContext.Session.SetString("UserRole", role);
-
-                                // Redirigir según el rol
-                                if (role == "admin")
-                                {
-                                    return RedirectToPage("/Admin/Dashboard");
-                                }
-                                if (role == "cliente")
-                                {
-                                    return RedirectToPage("/Cliente/Index");
-                                }
-                                else
-                                {
-                                    return RedirectToPage("/Index");
-                                }
+                                salt = reader["Salt"].ToString();
+                                storedHash = reader["Contraseña"].ToString();
                             }
                             else
                             {
-                                // Usuario o contraseña incorrectos
-                                ErrorMessage = "Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.";
+                                ErrorMessage = "Usuario no encontrado";
                                 return Page();
                             }
                         }
                     }
+
+                    // 2. Calculamos el hash de la contraseña ingresada
+                    string computedHash = PasswordHasher.ComputeHash(Input.Password, salt);
+                    Console.WriteLine($"Hash generado: {computedHash}");
+
+                    // 3. Comparamos los hashes
+                    if (computedHash != storedHash)
+                    {
+                        ErrorMessage = "Contraseña incorrecta";
+                        return Page();
+                    }
+
+                    // 4. Si coincide, obtenemos los datos del usuario
+                    string userDataSql = "SELECT IdUsuario, NombreUsuario, RolUsuario FROM Usuarios WHERE NombreUsuario = @Username";
+
+                    using (SqlCommand userCommand = new SqlCommand(userDataSql, connection))
+                    {
+                        userCommand.Parameters.AddWithValue("@Username", Input.Username);
+
+                        using (SqlDataReader reader = userCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int userId = reader.GetInt32(0);
+                                string username = reader.GetString(1);
+                                string role = reader.GetString(2);
+
+                                // Guardar en sesión
+                                HttpContext.Session.SetInt32("UserId", userId);
+                                HttpContext.Session.SetString("Username", username);
+                                HttpContext.Session.SetString("UserRole", role);
+
+                                // Redirigir según rol
+                                if (role == "admin")
+                                {
+                                    return RedirectToPage("/Admin/Dashboard");
+                                }
+                                else if (role == "cliente")
+                                {
+                                    return RedirectToPage("/Cliente/Index");
+                                }
+                            }
+                        }
+                    }
+
+                    return RedirectToPage("/Index");
                 }
             }
             catch (Exception ex)

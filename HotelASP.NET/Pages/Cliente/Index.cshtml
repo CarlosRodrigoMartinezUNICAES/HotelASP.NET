@@ -50,7 +50,10 @@
             @foreach (var habitacion in Model.HabitacionesDisponibles)
             {
                 <div class="room-card">
-                    <img src="/images/habitacion_default.jpg" alt="Habitación @habitacion.Numero">
+                    <!-- Imagen dinámica basada en IdTipoHabitacion -->
+                    <img src="/images/room@(habitacion.IdTipoHabitacion).jpg"
+                         alt="Habitación @habitacion.Tipo">
+
                     <div class="room-info">
                         <h3>@habitacion.Tipo</h3>
                         <p><strong>Número:</strong> @habitacion.Numero</p>

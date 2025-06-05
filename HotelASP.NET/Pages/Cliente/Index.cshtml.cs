@@ -37,10 +37,12 @@ public class IndexModel : PageModel
         {
             conn.Open();
             var query = @"
-                SELECT H.IdHabitacion, H.NumeroHabitacion, H.Piso, H.Detalles, T.NombreTipo, T.CapacidadMaxima, T.PrecioBase
-                FROM dbo.Habitaciones H
-                JOIN dbo.TiposHabitacion T ON H.IdTipoHabitacion = T.IdTipoHabitacion
-                WHERE H.Estado = 'disponible'";
+            SELECT H.IdHabitacion, H.NumeroHabitacion, H.Piso, H.Detalles, 
+                   T.NombreTipo, T.CapacidadMaxima, T.PrecioBase,
+                   T.IdTipoHabitacion
+            FROM dbo.Habitaciones H
+            JOIN dbo.TiposHabitacion T ON H.IdTipoHabitacion = T.IdTipoHabitacion
+            WHERE H.Estado = 'disponible'";
 
             using (var cmd = new SqlCommand(query, conn))
             using (var reader = cmd.ExecuteReader())
@@ -55,12 +57,12 @@ public class IndexModel : PageModel
                         Detalles = reader.IsDBNull(3) ? "" : reader.GetString(3),
                         Tipo = reader.GetString(4),
                         Capacidad = reader.GetInt32(5),
-                        Precio = reader.GetDecimal(6)
+                        Precio = reader.GetDecimal(6),
+                        IdTipoHabitacion = reader.GetInt32(7) // NUEVO CAMPO
                     });
                 }
             }
         }
-
         return habitaciones;
     }
 
@@ -73,5 +75,7 @@ public class IndexModel : PageModel
         public string Tipo { get; set; }
         public int Capacidad { get; set; }
         public decimal Precio { get; set; }
+        // Nueva propiedad para el ID del tipo de habitación
+        public int IdTipoHabitacion { get; set; }
     }
 }

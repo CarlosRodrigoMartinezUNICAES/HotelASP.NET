@@ -1,8 +1,11 @@
+using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+
 namespace HotelASP.NET.Pages.Cliente;
+
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
@@ -14,6 +17,7 @@ public class IndexModel : PageModel
     {
         _logger = logger;
         _config = config;
+        HabitacionesDisponibles = new List<HabitacionViewModel>(); // Inicializar la lista
     }
 
     public IActionResult OnGet()
@@ -31,7 +35,9 @@ public class IndexModel : PageModel
     private List<HabitacionViewModel> ObtenerHabitacionesDisponibles()
     {
         var habitaciones = new List<HabitacionViewModel>();
-        var connectionString = _config.GetConnectionString("Login_HotelConnection");
+
+        // CORRECCIÓN: quitar los asteriscos y usar guión bajo
+        var connectionString = _config.GetConnectionString("LoginHotelConnection");
 
         using (var conn = new SqlConnection(connectionString))
         {
@@ -51,18 +57,19 @@ public class IndexModel : PageModel
                 {
                     habitaciones.Add(new HabitacionViewModel
                     {
-                        Id = reader.GetInt32(0),
-                        Numero = reader.GetString(1),
-                        Piso = reader.GetInt32(2),
-                        Detalles = reader.IsDBNull(3) ? "" : reader.GetString(3),
-                        Tipo = reader.GetString(4),
-                        Capacidad = reader.GetInt32(5),
-                        Precio = reader.GetDecimal(6),
-                        IdTipoHabitacion = reader.GetInt32(7) // NUEVO CAMPO
+                        Id = reader.GetInt32("IdHabitacion"),
+                        Numero = reader.GetString("NumeroHabitacion"),
+                        Piso = reader.GetInt32("Piso"),
+                        Detalles = reader.IsDBNull("Detalles") ? "" : reader.GetString("Detalles"),
+                        Tipo = reader.GetString("NombreTipo"),
+                        Capacidad = reader.GetInt32("CapacidadMaxima"),
+                        Precio = reader.GetDecimal("PrecioBase"),
+                        IdTipoHabitacion = reader.GetInt32("IdTipoHabitacion")
                     });
                 }
             }
         }
+
         return habitaciones;
     }
 
@@ -75,7 +82,6 @@ public class IndexModel : PageModel
         public string Tipo { get; set; }
         public int Capacidad { get; set; }
         public decimal Precio { get; set; }
-        // Nueva propiedad para el ID del tipo de habitación
         public int IdTipoHabitacion { get; set; }
     }
 }

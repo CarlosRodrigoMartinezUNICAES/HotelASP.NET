@@ -25,22 +25,22 @@
 
 body {
     background-color: var(--light-color);
-    font-size: 1rem;
+    font-size: 18px;
     line-height: 1.5;
     color: var(--dark-color);
+    overflow-x: hidden;
 }
 
-/* Layout Components */
+/* Layout simplificado */
 .container {
-    max-width: 1200px;
+    width: 1600px;
     margin: 0 auto;
-    padding: 0 1rem;
 }
 
-/* Header Styles */
+/* Header fijo */
 header {
     background-color: var(--primary-color);
-    padding: 1rem;
+    padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -53,11 +53,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 1600px;
+    margin: 0 auto;
 }
 
 .logo {
     color: var(--text-light);
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -68,7 +70,7 @@ header {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 nav a {
@@ -76,15 +78,16 @@ nav a {
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
+    font-size: 1.2rem;
 }
 
     nav a:hover {
         color: var(--secondary-color);
     }
 
-/* Hero Section */
+/* Hero Section - 16:9 */
 .hero {
-    height: 100vh;
+    height: 1080px;
     position: relative;
     display: flex;
     align-items: center;
@@ -93,21 +96,26 @@ nav a {
     color: var(--text-light);
     padding-top: 60px;
     overflow: hidden;
+    margin-bottom: 80px;
 }
 
 .hero-content {
     position: absolute;
     z-index: 2;
     text-align: center;
+    max-width: 1200px;
 }
 
     .hero-content h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     .hero-content p {
-        font-size: 1.25rem;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     }
 
 /* Carousel */
@@ -116,7 +124,7 @@ nav a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 1080px;
 }
 
 .carousel-images {
@@ -146,44 +154,46 @@ nav a {
     background: rgba(0, 0, 0, 0.5);
     color: var(--text-light);
     border: none;
-    padding: 10px 15px;
+    padding: 15px 20px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 28px;
     z-index: 10;
     transition: var(--transition);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
 }
 
 .carousel .prev {
-    left: 10px;
+    left: 50px;
 }
 
 .carousel .next {
-    right: 10px;
+    right: 50px;
 }
 
 .carousel button:hover {
     background: rgba(0, 0, 0, 0.8);
 }
 
-/* Form Components */
+/* Formularios */
 .form-container {
     background: var(--text-light);
     padding: var(--form-padding);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    max-width: 800px;
-    margin: 2rem auto;
+    width: 1400px;
+    margin: 0 auto 80px;
 }
 
 .search-form {
-    max-width: 1000px;
-    margin: -50px auto 0;
+    margin: -80px auto 0;
     position: relative;
 }
 
 .login-container {
-    max-width: 500px;
-    margin: 120px auto 0;
+    width: 600px;
+    margin: 150px auto 80px;
     background-color: var(--text-light);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
@@ -192,8 +202,9 @@ nav a {
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-group {
@@ -206,27 +217,28 @@ nav a {
         margin-bottom: 0.5rem;
         color: var(--primary-color);
         font-weight: 500;
+        font-size: 1.1rem;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-        padding: 0.8rem;
+        padding: 1rem;
         border: 1px solid #ddd;
         border-radius: 5px;
-        font-size: 1rem;
+        font-size: 1.1rem;
         width: 100%;
     }
 
 .validation-message {
     color: var(--secondary-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-top: 0.3rem;
 }
 
-/* Buttons */
+/* Botones */
 .btn {
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -235,13 +247,14 @@ nav a {
     text-align: center;
     display: inline-block;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .search-btn {
     background-color: var(--secondary-color);
     color: var(--text-light);
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
 }
 
     .search-btn:hover {
@@ -251,6 +264,8 @@ nav a {
 .book-btn {
     background-color: var(--accent-color);
     color: var(--text-light);
+    font-size: 1.3rem;
+    padding: 1.2rem 3rem;
 }
 
     .book-btn:hover {
@@ -260,8 +275,9 @@ nav a {
 .login-btn {
     background-color: var(--secondary-color);
     color: var(--text-light);
-    padding: 1rem;
+    padding: 1.2rem;
     width: 100%;
+    font-size: 1.3rem;
 }
 
     .login-btn:hover {
@@ -269,11 +285,11 @@ nav a {
     }
 
 .action-btn {
-    padding: 0.5rem 1rem;
-    margin-right: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    margin-right: 0.8rem;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--text-light);
 }
 
@@ -289,7 +305,7 @@ nav a {
         opacity: 0.8;
     }
 
-/* Card Components */
+/* Tarjetas */
 .card {
     background: var(--text-light);
     border-radius: var(--border-radius);
@@ -299,76 +315,103 @@ nav a {
 }
 
     .card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
     }
 
 .room-card {
-    max-width: 300px;
+    width: 350px;
 }
 
 .destination-card {
-    width: 300px;
+    width: 350px;
     text-align: center;
 }
 
 .room-img {
-    height: 200px;
+    height: 250px;
     background-size: cover;
     background-position: center;
 }
 
-/* Content Sections */
+.card-content {
+    padding: 1.5rem;
+}
+
+    .card-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--primary-color);
+    }
+
+    .card-content p {
+        margin-bottom: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin: 1rem 0;
+}
+
+/* Secciones de contenido */
 .section {
-    padding: 4rem 2rem;
+    padding: 5rem 0;
+    margin: 0 auto;
+    width: 1600px;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     color: var(--primary-color);
+    font-size: 2.5rem;
 }
 
 .featured-rooms {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
-/* Grid Systems */
+/* Grids */
 .grid {
     display: grid;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .rooms-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .destinations-list {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 2.5rem;
+    padding: 0;
+    flex-wrap: nowrap;
 }
 
-/* Typography */
+/* Tipografía */
 .text-center {
     text-align: center;
 }
 
 .login-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
     .login-header h1 {
         color: var(--primary-color);
-        font-size: 2rem;
+        font-size: 2.5rem;
+        text-align: center;
     }
 
-/* Alerts */
+/* Alertas */
 .alert {
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 5px;
     margin-bottom: 1.5rem;
+    font-size: 1.1rem;
 }
 
 .alert-danger {
@@ -383,12 +426,13 @@ nav a {
     border: 1px solid #c3e6cb;
 }
 
-/* Links */
+/* Enlaces */
 .link {
     color: var(--accent-color);
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
+    font-size: 1.1rem;
 }
 
     .link:hover {
@@ -397,27 +441,31 @@ nav a {
 
 .register-link {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 1.8rem;
     color: #7f8c8d;
+    font-size: 1.1rem;
 }
 
 /* Footer */
 footer {
     background-color: var(--primary-color);
     color: var(--text-light);
-    padding: 3rem 2rem;
-    margin-top: 4rem;
+    padding: 4rem 0;
+    margin-top: 5rem;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    width: 1600px;
+    margin: 0 auto;
 }
 
 .footer-section h4 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--secondary-color);
+    font-size: 1.5rem;
 }
 
 .footer-section ul {
@@ -425,23 +473,24 @@ footer {
 }
 
     .footer-section ul li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
     }
 
 .footer-section a {
     color: var(--text-light);
     text-decoration: none;
     transition: var(--transition);
+    font-size: 1.1rem;
 }
 
     .footer-section a:hover {
         color: var(--secondary-color);
     }
 
-/* Table Styles */
+/* Tablas */
 .rooms-container {
-    overflow-x: auto;
-    margin: 2rem auto;
+    width: 1600px;
+    margin: 3rem auto;
 }
 
 .rooms-table {
@@ -449,11 +498,12 @@ footer {
     border-collapse: collapse;
     background: var(--text-light);
     box-shadow: var(--shadow);
+    font-size: 1.1rem;
 }
 
     .rooms-table th,
     .rooms-table td {
-        padding: 1rem;
+        padding: 1.2rem;
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
@@ -461,47 +511,9 @@ footer {
     .rooms-table th {
         background-color: #f8f9fa;
         font-weight: bold;
+        font-size: 1.2rem;
     }
 
     .rooms-table tr:hover {
         background-color: #f5f5f5;
     }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .search-form {
-        margin: 0 1rem;
-        padding: 1rem;
-    }
-
-    .hero {
-        height: 80vh;
-    }
-
-    .section {
-        padding: 2rem 1rem;
-    }
-
-    .destinations-list {
-        padding: 1rem;
-    }
-
-    .login-container {
-        margin-top: 100px;
-    }
-}

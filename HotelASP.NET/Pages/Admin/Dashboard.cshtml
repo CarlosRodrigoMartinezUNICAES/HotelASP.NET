@@ -7,8 +7,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Administrador - EasyReverHotels</title>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/dashboard-admin.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -17,7 +19,7 @@
             <nav>
                 <ul>
                     <li>
-                        <form method="post" asp-page-handler="Logout">
+                        <form method="post" asp-page-handler="Logout" style="display: inline;">
                             <button type="submit" class="search-btn">Cerrar sesión</button>
                         </form>
                     </li>
@@ -26,44 +28,112 @@
         </div>
     </header>
 
-    <main class="featured-rooms" style="margin-top: 100px;">
-        <div class="section-title">
+    <main class="dashboard-main">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
             <h2>Bienvenido, @Model.Username</h2>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center;">
-        <a href="/Admin/AnadirHabitacion" class="book-btn">Añadir Habitación</a>
-        <a href="/Admin/VerHabitacion" class="search-btn">Ver Habitaciones</a>
-    </div>
+            <div class="action-buttons">
+                <a href="/Admin/AnadirHabitacion" class="book-btn">➕ Añadir Habitación</a>
+                <a href="/Admin/VerHabitacion" class="search-btn">👁️ Ver Habitaciones</a>
+            </div>
         </div>
-        
-        <div class="rooms-grid">
-            <div class="room-card">
-                <div class="room-info">
-                    <h3 style="font-size: 2.5rem; margin: 0.5rem 0;">24</h3>
-                    <p>Habitaciones Ocupadas</p>
-                </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="habitaciones-ocupadas">24</div>
+                <div class="stat-label">Habitaciones Ocupadas</div>
             </div>
-            
-            <div class="room-card">
-                <div class="room-info">
-                    <h3 style="font-size: 2.5rem; margin: 0.5rem 0;">12</h3>
-                    <p>Habitaciones Disponibles</p>
-                </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="habitaciones-disponibles">12</div>
+                <div class="stat-label">Habitaciones Disponibles</div>
             </div>
-            
-            <div class="room-card">
-                <div class="room-info">
-                    <h3 style="font-size: 2.5rem; margin: 0.5rem 0;">56</h3>
-                    <p>Clientes Registrados</p>
-                </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="clientes-registrados">56</div>
+                <div class="stat-label">Clientes Registrados</div>
             </div>
-            
-            <div class="room-card">
-                <div class="room-info">
-                    <h3 style="font-size: 2.5rem; margin: 0.5rem 0;">4</h3>
-                    <p>Reservas Pendientes</p>
-                </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="reservas-pendientes">4</div>
+                <div class="stat-label">Reservas Pendientes</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="quick-actions">
+            <h3>Acciones Rápidas</h3>
+            <div class="actions-grid">
+                <a href="/Admin/AnadirHabitacion" class="action-card">
+                    <h4>Nueva Habitación</h4>
+                    <p>Agregar una nueva habitación al inventario del hotel</p>
+                </a>
+
+                <a href="/Admin/VerHabitacion" class="action-card">
+                    <h4>Gestionar Habitaciones</h4>
+                    <p>Ver, editar o eliminar habitaciones existentes</p>
+                </a>
             </div>
         </div>
     </main>
+
+    <script>
+        // Animación de conteo para las estadísticas
+        function animateCounter(elementId, targetValue, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = targetValue / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = Math.floor(current);
+
+                if (current >= targetValue) {
+                    element.textContent = targetValue;
+                    clearInterval(timer);
+                }
+            }, 16);
+        }
+
+        // Iniciar animaciones cuando la página carga
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simular carga de datos con un pequeño delay
+            setTimeout(() => {
+                animateCounter('habitaciones-ocupadas', 24);
+                animateCounter('habitaciones-disponibles', 12);
+                animateCounter('clientes-registrados', 56);
+                animateCounter('reservas-pendientes', 4);
+            }, 500);
+
+            // Actualizar estadísticas cada 30 segundos (opcional)
+            // setInterval(updateStats, 30000);
+        });
+
+        // Función para actualizar estadísticas en tiempo real (opcional)
+        function updateStats() {
+            // Aquí podrías hacer una llamada AJAX para obtener datos actualizados
+            // fetch('/Admin/GetStats')
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         document.getElementById('habitaciones-ocupadas').textContent = data.ocupadas;
+            //         document.getElementById('habitaciones-disponibles').textContent = data.disponibles;
+            //         document.getElementById('clientes-registrados').textContent = data.clientes;
+            //         document.getElementById('reservas-pendientes').textContent = data.reservas;
+            //     });
+        }
+
+        // Efectos de hover mejorados
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,90 +3,24 @@
 @{
     ViewData["Title"] = "Editar Habitación";
 }
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Habitación - EasyReverHotels</title>
-    <link rel="stylesheet" href="~/css/site.css" />
-    <style>
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - EasyReverHotels</title>
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .text-danger {
-            color: #dc3545;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: block;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn-save {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            flex: 1;
-        }
-
-        .btn-cancel {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            flex: 1;
-            text-align: center;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-save:hover {
-            background-color: #218838;
-        }
-
-        .btn-cancel:hover {
-            background-color: #5a6268;
-        }
-    </style>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="~/css/editarhabitacion.css" />
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="nav-container">
             <div class="logo">Panel <span>Admin</span></div>
@@ -96,8 +30,8 @@
                     <li><a href="/Admin/AnadirHabitacion">Añadir Habitación</a></li>
                     <li><a href="/Admin/VerHabitacion">Ver Habitaciones</a></li>
                     <li>
-                        <form method="post" asp-page-handler="Logout">
-                            <button type="submit" class="search-btn">Cerrar sesión</button>
+                        <form method="post" asp-page-handler="Logout" style="margin: 0;">
+                            <button type="submit" class="logout-btn">Cerrar sesión</button>
                         </form>
                     </li>
                 </ul>
@@ -105,63 +39,145 @@
         </div>
     </header>
 
-    <main class="featured-rooms" style="margin-top: 100px;">
+    <!-- Contenido Principal -->
+    <main class="main-content">
         <div class="section-title">
             <h2>Editar Habitación</h2>
+
+            <!-- Mostrar mensaje de éxito o error -->
             @if (!string.IsNullOrEmpty(Model.Message))
             {
-                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">@Model.Message</div>
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">
+                    @Model.Message
+                </div>
             }
         </div>
 
+        <!-- Formulario de Edición -->
         <div class="form-container">
             <form method="post">
+                <!-- Campo oculto para ID -->
                 <input type="hidden" asp-for="Habitacion.IdHabitacion" />
 
+                <!-- Número de Habitación -->
                 <div class="form-group">
-                    <label asp-for="Habitacion.NumeroHabitacion">Número de Habitación:</label>
-                    <input asp-for="Habitacion.NumeroHabitacion" type="text" required>
+                    <label asp-for="Habitacion.NumeroHabitacion">Número de Habitación</label>
+                    <input asp-for="Habitacion.NumeroHabitacion"
+                           type="text"
+                           placeholder="Ej: 101, 201A, Suite Premium..."
+                           required>
                     <span asp-validation-for="Habitacion.NumeroHabitacion" class="text-danger"></span>
                 </div>
 
+                <!-- Tipo de Habitación -->
                 <div class="form-group">
-                    <label asp-for="Habitacion.IdTipoHabitacion">Tipo de Habitación:</label>
-                    <select asp-for="Habitacion.IdTipoHabitacion" asp-items="Model.TiposHabitacion" required>
-                        <option value="">Seleccione un tipo</option>
+                    <label asp-for="Habitacion.IdTipoHabitacion">Tipo de Habitación</label>
+                    <select asp-for="Habitacion.IdTipoHabitacion"
+                            asp-items="Model.TiposHabitacion"
+                            required>
+                        <option value="">Seleccione un tipo de habitación</option>
                     </select>
                     <span asp-validation-for="Habitacion.IdTipoHabitacion" class="text-danger"></span>
                 </div>
 
+                <!-- Piso -->
                 <div class="form-group">
-                    <label asp-for="Habitacion.Piso">Piso:</label>
-                    <input asp-for="Habitacion.Piso" type="number" min="1" max="20" required>
+                    <label asp-for="Habitacion.Piso">Piso</label>
+                    <input asp-for="Habitacion.Piso"
+                           type="number"
+                           min="1"
+                           max="20"
+                           placeholder="Ingrese el número de piso"
+                           required>
                     <span asp-validation-for="Habitacion.Piso" class="text-danger"></span>
                 </div>
 
+                <!-- Estado -->
                 <div class="form-group">
-                    <label asp-for="Habitacion.Estado">Estado:</label>
+                    <label asp-for="Habitacion.Estado">Estado de la Habitación</label>
                     <select asp-for="Habitacion.Estado" required>
-                        <option value="disponible">Disponible</option>
-                        <option value="ocupada">Ocupada</option>
-                        <option value="reservada">Reservada</option>
-                        <option value="mantenimiento">Mantenimiento</option>
-                        <option value="limpieza">Limpieza</option>
+                        <option value="">Seleccione el estado</option>
+                        <option value="disponible">🟢 Disponible</option>
+                        <option value="ocupada">🔴 Ocupada</option>
+                        <option value="reservada">🟡 Reservada</option>
+                        <option value="mantenimiento">🔧 Mantenimiento</option>
+                        <option value="limpieza">🧹 Limpieza</option>
                     </select>
                     <span asp-validation-for="Habitacion.Estado" class="text-danger"></span>
                 </div>
 
+                <!-- Descripción/Detalles -->
                 <div class="form-group">
-                    <label asp-for="Habitacion.Detalles">Descripción:</label>
-                    <textarea asp-for="Habitacion.Detalles" rows="4" required></textarea>
+                    <label asp-for="Habitacion.Detalles">Descripción y Detalles</label>
+                    <textarea asp-for="Habitacion.Detalles"
+                              rows="4"
+                              placeholder="Describa las características, amenidades y detalles especiales de la habitación..."
+                              required></textarea>
                     <span asp-validation-for="Habitacion.Detalles" class="text-danger"></span>
                 </div>
 
+                <!-- Botones de Acción -->
                 <div class="button-group">
-                    <button type="submit" class="btn-save">Guardar Cambios</button>
-                    <a href="/Admin/VerHabitacion" class="btn-cancel">Cancelar</a>
+                    <button type="submit" class="btn-save">
+                        💾 Guardar Cambios
+                    </button>
+                    <a href="/Admin/VerHabitacion" class="btn-cancel">
+                        ❌ Cancelar
+                    </a>
                 </div>
             </form>
         </div>
     </main>
+
+    <!-- Scripts de validación (si es necesario) -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Script personalizado para mejoras UX -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar efectos de focus mejorados
+            const inputs = document.querySelectorAll('input, select, textarea');
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+            });
+
+            // Confirmación antes de cancelar si hay cambios
+            const form = document.querySelector('form');
+            const cancelBtn = document.querySelector('.btn-cancel');
+            let formChanged = false;
+
+            // Detectar cambios en el formulario
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    formChanged = true;
+                });
+            });
+
+            // Confirmación al cancelar
+            cancelBtn.addEventListener('click', function(e) {
+                if (formChanged) {
+                    if (!confirm('¿Está seguro de que desea cancelar? Los cambios no guardados se perderán.')) {
+                        e.preventDefault();
+                    }
+                }
+            });
+
+            // Animación de éxito al enviar
+            form.addEventListener('submit', function() {
+                const submitBtn = document.querySelector('.btn-save');
+                submitBtn.innerHTML = '⏳ Guardando...';
+                submitBtn.disabled = true;
+            });
+        });
+    </script>
 </body>
 </html>

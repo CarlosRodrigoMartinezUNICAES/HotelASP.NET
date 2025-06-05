@@ -7,8 +7,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Habitación - EasyReverHotels</title>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="~/css/admin-styles.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -16,9 +18,9 @@
             <div class="logo">Panel <span>Admin</span></div>
             <nav>
                 <ul>
-                    <li><a href="/Admin/Dashboard">Dashboard</a></li>
-                    <li><a href="/Admin/AnadirHabitacion">Añadir Habitación</a></li>
-                    <li><a href="/Admin/VerHabitacion">Ver Habitaciones</a></li>
+                    <li><a href="/Admin/Dashboard" class="nav-link">Dashboard</a></li>
+                    <li><a href="/Admin/AnadirHabitacion" class="nav-link active">Añadir Habitación</a></li>
+                    <li><a href="/Admin/VerHabitacion" class="nav-link">Ver Habitaciones</a></li>
                     <li>
                         <form method="post" asp-page-handler="Logout">
                             <button type="submit" class="search-btn">Cerrar sesión</button>
@@ -29,49 +31,110 @@
         </div>
     </header>
 
-    <main class="featured-rooms" style="margin-top: 100px;">
-        <div class="section-title">
+    <main class="dashboard-main">
+        <div class="welcome-section">
             <h2>Añadir Nueva Habitación</h2>
+
             @if (!string.IsNullOrEmpty(Model.Message))
             {
-                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">@Model.Message</div>
+                <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">
+                    @Model.Message
+                </div>
             }
-            <div style="margin-top: 1rem;">
-                <a href="/Admin/Dashboard" class="book-btn">Volver al Dashboard</a>
+
+            <div class="action-buttons">
+                <a href="/Admin/Dashboard" class="book-btn secondary">← Volver al Dashboard</a>
             </div>
         </div>
 
         <div class="form-container">
-            <form method="post" class="room-form">
-                <div class="form-group">
-                    <label asp-for="Habitacion.NumeroHabitacion">Número de Habitación:</label>
-                    <input asp-for="Habitacion.NumeroHabitacion" type="text" required>
-                    <span asp-validation-for="Habitacion.NumeroHabitacion" class="text-danger"></span>
-                </div>
+            <div class="form-card">
+                <form method="post" class="room-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="Habitacion.NumeroHabitacion">
+                                <span class="form-icon">🏠</span>
+                                Número de Habitación
+                            </label>
+                            <input asp-for="Habitacion.NumeroHabitacion" type="text" class="form-input" placeholder="Ej: 101, 201A..." required>
+                            <span asp-validation-for="Habitacion.NumeroHabitacion" class="validation-error"></span>
+                        </div>
 
-                <div class="form-group">
-                    <label asp-for="Habitacion.IdTipoHabitacion">Tipo de Habitación:</label>
-                    <select asp-for="Habitacion.IdTipoHabitacion" asp-items="Model.TiposHabitacion" required>
-                        <option value="">Seleccione un tipo</option>
-                    </select>
-                    <span asp-validation-for="Habitacion.IdTipoHabitacion" class="text-danger"></span>
-                </div>
+                        <div class="form-group">
+                            <label asp-for="Habitacion.IdTipoHabitacion">
+                                <span class="form-icon">🛏️</span>
+                                Tipo de Habitación
+                            </label>
+                            <select asp-for="Habitacion.IdTipoHabitacion" asp-items="Model.TiposHabitacion" class="form-select" required>
+                                <option value="">Seleccione un tipo</option>
+                            </select>
+                            <span asp-validation-for="Habitacion.IdTipoHabitacion" class="validation-error"></span>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="Habitacion.Piso">Piso:</label>
-                    <input asp-for="Habitacion.Piso" type="number" min="1" max="20" required>
-                    <span asp-validation-for="Habitacion.Piso" class="text-danger"></span>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="Habitacion.Piso">
+                                <span class="form-icon">🏢</span>
+                                Piso
+                            </label>
+                            <input asp-for="Habitacion.Piso" type="number" min="1" max="20" class="form-input" placeholder="Número de piso" required>
+                            <span asp-validation-for="Habitacion.Piso" class="validation-error"></span>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="Habitacion.Detalles">Descripción:</label>
-                    <textarea asp-for="Habitacion.Detalles" rows="4" required></textarea>
-                    <span asp-validation-for="Habitacion.Detalles" class="text-danger"></span>
-                </div>
+                    <div class="form-group full-width">
+                        <label asp-for="Habitacion.Detalles">
+                            <span class="form-icon">📝</span>
+                            Descripción de la habitación
+                        </label>
+                        <textarea asp-for="Habitacion.Detalles" rows="4" class="form-textarea" placeholder="Describa las características, amenidades y detalles especiales de la habitación..." required></textarea>
+                        <span asp-validation-for="Habitacion.Detalles" class="validation-error"></span>
+                    </div>
 
-                <button type="submit" class="book-btn">Guardar Habitación</button>
-            </form>
+                    <div class="form-actions">
+                        <button type="submit" class="book-btn primary">
+                            <span class="btn-icon">💾</span>
+                            Guardar Habitación
+                        </button>
+                        <a href="/Admin/VerHabitacion" class="book-btn secondary">
+                            <span class="btn-icon">👁️</span>
+                            Ver Habitaciones
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
+
+    <script>
+        // Animación de entrada para los elementos del formulario
+        document.addEventListener('DOMContentLoaded', function() {
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                group.style.animationDelay = `${index * 0.1}s`;
+                group.classList.add('fade-in-up');
+            });
+
+            // Validación en tiempo real
+            const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+
+                input.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+
+                // Si ya tiene valor, mantener el estado focused
+                if (input.value !== '') {
+                    input.parentElement.classList.add('focused');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
